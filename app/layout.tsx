@@ -1,4 +1,6 @@
 import '@/styles/global.css';
+import Nav from '@components/Nav';
+import Provider from '@components/Provider';
 
 export const metadata = {
   title: '小闲话 ｜ 记录些有的没的',
@@ -11,9 +13,12 @@ type RootLayoutProps = {
 
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <html lang="zh">
+    <html>
       <body>
-        <main className="app">{children}</main>
+        <main>
+          <Nav />
+          {children}
+        </main>
       </body>
     </html>
   );
