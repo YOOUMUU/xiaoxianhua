@@ -15,10 +15,12 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html>
       <body>
-        <main>
-          <Nav />
-          {children}
-        </main>
+        <Provider>
+          <main>
+            <Nav />
+            {children}
+          </main>
+        </Provider>
       </body>
     </html>
   );
