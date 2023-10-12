@@ -1,19 +1,26 @@
 import { Schema, model, models } from 'mongoose';
 
-const UserSchema = new Schema({
-  id: {
-    type: String,
-    unique: [true, 'id已被注册。'],
-    required: [true, 'id是必填项。'],
+const UserSchema = new Schema(
+  {
+    username: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    email: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
   },
-  username: {
-    type: String,
-    required: [true, '用户名是必填项。'],
-  },
-  image: {
-    type: String,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 const User = models.User || model('User', UserSchema);
 

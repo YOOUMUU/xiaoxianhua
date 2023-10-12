@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Form from '@components/Form';
 import { Post } from '@types';
+import Nav from '@components/Nav';
 
 const Create = () => {
   const router = useRouter();
@@ -41,13 +42,16 @@ const Create = () => {
   };
 
   return (
-    <Form
-      type="创建"
-      post={post}
-      setPost={setPost}
-      submitting={submitting}
-      handleSubmit={createPost}
-    />
+    <>
+      <Nav />
+      <Form
+        type="创建"
+        post={post}
+        setPost={setPost}
+        submitting={submitting}
+        handleSubmit={createPost}
+      />
+    </>
   );
 };
 
