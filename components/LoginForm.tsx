@@ -27,7 +27,9 @@ const LoginForm = () => {
       }
 
       router.replace('/');
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

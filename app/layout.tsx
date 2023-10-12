@@ -16,7 +16,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
     <html>
       <body>
         <Provider>
-          <main>{children}</main>
+          <main className="pb-24">{children}</main>
         </Provider>
       </body>
     </html>

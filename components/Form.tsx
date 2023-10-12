@@ -13,7 +13,7 @@ type FormProps = {
 const Form = ({ type, post, setPost, submitting, handleSubmit }: FormProps) => {
   return (
     <section className="w-full max-2-full flex-start">
-      <div className="container py-10">
+      <div className="container py-10 flex flex-col md:items-center">
         <h1 className="mb-4 text-4xl font-bold text-left">{type}小闲话</h1>
         <p className="text-lg text-black/50">
           {type}和分享你的小闲话，让我们一起记录起我们的点滴。
@@ -34,7 +34,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }: FormProps) => {
               onChange={(e) => setPost({ ...post, content: e.target.value })}
               placeholder="在此输入你的小闲话..."
               required
-              className="rounded-lg p-2 min-h-[120px]"
+              className="rounded-lg p-2 min-h-[120px] text-gray-600"
             />
           </label>
 
@@ -49,7 +49,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }: FormProps) => {
               onChange={(e) => setPost({ ...post, tag: e.target.value })}
               placeholder="输入你的标签，比如：生活、工作、随想、摘抄等"
               required
-              className="rounded-lg p-2"
+              className="rounded-lg p-2 text-gray-600"
             />
           </label>
 
@@ -63,7 +63,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }: FormProps) => {
               disabled={submitting}
               className="text-sm px-4 py-2 rounded bg-black text-white"
             >
-              {submitting ? '提交中...' : '提交'}
+              {submitting ? `${type}中...` : `${type}`}
             </button>
           </div>
         </form>

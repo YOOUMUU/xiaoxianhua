@@ -1,10 +1,10 @@
 import User from '@models/user';
 import { connectToDatabase } from '@utils/database';
 import bcrypt from 'bcryptjs';
-import NextAuth, { AuthOptions } from 'next-auth';
+import NextAuth, { AuthOptions, DefaultSession, Session } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     // Google({
     //   clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -50,6 +50,15 @@ export const authOptions = {
     signIn: '/login',
   },
 
+  callbacks: {
+    async session({ session }: { session: Session & DefaultSession }) {
+      const sessionUser = await User.findOne({ email: session.user.email });
+      session.user.id = sessionUser._id.toString();
+
+      return session;
+    },
+  },
+
   // callbacks: {
   //   async session({ session, token, user }) {
   //     const sessionUser = await User.findOne({ id: user.id });
@@ -82,7 +91,7 @@ export const authOptions = {
   //     }
   //   },
   // },
-} as AuthOptions;
+};
 
 const handler = NextAuth(authOptions);
 

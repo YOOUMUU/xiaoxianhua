@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -62,10 +63,21 @@ const RegisterForm = () => {
         }),
       });
 
+      const resSignIn = await signIn('credentials', {
+        email,
+        password: pass,
+        redirect: false,
+      });
+
+      if (resSignIn?.error) {
+        setError(resSignIn.error);
+        return;
+      }
+
       if (res.ok) {
         const form = e.target as HTMLFormElement;
         form.reset();
-        router.push('/');
+        router.replace('/');
       } else {
         console.log('注册失败，请重试。');
         setError('注册失败，请重试。');

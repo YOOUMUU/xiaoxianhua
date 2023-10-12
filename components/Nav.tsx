@@ -56,7 +56,7 @@ const Nav = () => {
                 登出
               </button>
 
-              <Link href="/profile">
+              <Link href={`/profile/${session?.user?.id}`}>
                 <Image
                   src={
                     session?.user?.image || '/assets/images/user-profile.svg'
@@ -111,11 +111,11 @@ const Nav = () => {
                     发布闲话
                   </Link>
                   <Link
-                    href="/profile"
+                    href={`/profile/${session?.user?.id}`}
                     onClick={() => setToggleDropdown(false)}
                     className="rounded py-2 px-4 hover:bg-black hover:text-white transition-all"
                   >
-                    个人资料
+                    个人主页
                   </Link>
                   <button
                     type="button"
