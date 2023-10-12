@@ -1,8 +1,10 @@
+'use client';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 
 const Login = () => {
   return (
-    <section className="flex justify-center items-center h-screen bg-black">
+    <section className="flex flex-col justify-center items-center h-screen bg-black">
       <div className="p-4 border bg-white rounded-lg flex flex-col">
         <h1 className="text-xl font-bold mb-4 mx-auto">登录账号</h1>
         <form action="POST" className="flex flex-col sm:w-96 w-72">
@@ -65,6 +67,13 @@ const Login = () => {
           </Link>
         </form>
       </div>
+
+      <button
+        onClick={() => signIn('github')}
+        className="mt-4 bg-zinc-600 hover:bg-white text-white hover:text-black text-sm font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline duration-200"
+      >
+        用 Github 登录
+      </button>
     </section>
   );
 };

@@ -71,19 +71,19 @@ const Nav = () => {
           ) : (
             <>
               {providers && (
-                // <Link
-                //   href="/login"
-                //   className="py-1 px-3 bg-black rounded-full border border-black text-white"
-                // >
-                //   登录
-                // </Link>
-                <button
-                  type="button"
-                  onClick={() => signIn()}
+                <Link
+                  href="/login"
                   className="py-1 px-3 bg-black rounded-full border border-black text-white"
                 >
                   登录
-                </button>
+                </Link>
+                // <button
+                //   type="button"
+                //   onClick={() => signIn()}
+                //   className="py-1 px-3 bg-black rounded-full border border-black text-white"
+                // >
+                //   登录
+                // </button>
               )}
             </>
           )}
@@ -133,19 +133,19 @@ const Nav = () => {
           ) : (
             <>
               {providers && (
-                // <Link
-                //   href="/login"
-                //   className="py-1 px-3 bg-black rounded-full border border-black text-white"
-                // >
-                //   登录
-                // </Link>
-                <button
-                  type="button"
-                  onClick={() => signIn()}
+                <Link
+                  href="/login"
                   className="py-1 px-3 bg-black rounded-full border border-black text-white"
                 >
                   登录
-                </button>
+                </Link>
+                // <button
+                //   type="button"
+                //   onClick={() => signIn()}
+                //   className="py-1 px-3 bg-black rounded-full border border-black text-white"
+                // >
+                //   登录
+                // </button>
               )}
             </>
           )}

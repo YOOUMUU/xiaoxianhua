@@ -9,12 +9,15 @@ const Create = () => {
   const router = useRouter();
   const { data: session } = useSession();
 
+  console.log('session', session);
+
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState<Post>({
     content: '',
     tag: '',
   });
 
+  // console.log('session', session.user.name);
   const createPost = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
@@ -23,7 +26,7 @@ const Create = () => {
       const response: Response = await fetch('/api/post/new', {
         method: 'POST',
         body: JSON.stringify({
-          // userId: session?.user?.name,
+          userId: session?.user?.id,
           content: post.content,
           tag: post.tag,
         }),

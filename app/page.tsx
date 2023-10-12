@@ -4,6 +4,7 @@ import Nav from '@components/Nav';
 const Home = () => {
   return (
     <>
+      <Nav />
       <section className="w-full pt-10">
         <div className="container mx-auto flex flex-col justify-center items-center text-center">
           <h1 className="font-xiaoxianhua text-6xl">- 小閒話 -</h1>

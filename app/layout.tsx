@@ -16,10 +16,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
     <html>
       <body>
         <Provider>
-          <main>
-            <Nav />
-            {children}
-          </main>
+          <main>{children}</main>
         </Provider>
       </body>
     </html>

@@ -1,11 +1,55 @@
+'use client';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
+import { useState } from 'react';
 
 const Register = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!name || !email || !pass) {
+      setError('请填写完整信息。');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password: pass,
+        }),
+      });
+
+      if (res.ok) {
+        const form = e.target as HTMLFormElement;
+        form.reset();
+      } else {
+        console.log('注册失败，请重试。');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <section className="flex justify-center items-center h-screen bg-black">
+    <section className="flex flex-col justify-center items-center h-screen bg-black">
       <div className="p-4 border bg-white rounded-lg flex flex-col">
         <h1 className="text-xl font-bold mb-4 mx-auto">注册账号</h1>
-        <form action="POST" className="flex flex-col sm:w-96 w-72">
+        <form
+          onSubmit={handleSubmit}
+          action="POST"
+          className="flex flex-col sm:w-96 w-72"
+        >
           <div className="mb-4">
             <div className="mb-2">
               <label
@@ -17,6 +61,7 @@ const Register = () => {
               <span className="inline ml-0.5 text-red-500">*</span>
             </div>
             <input
+              onChange={(e) => setName(e.target.value)}
               type="text"
               name="username"
               id="username"
@@ -36,6 +81,7 @@ const Register = () => {
               <span className="inline ml-0.5 text-red-500">*</span>
             </div>
             <input
+              onChange={(e) => setEmail(e.target.value)}
               type="email"
               name="email"
               id="email"
@@ -55,6 +101,7 @@ const Register = () => {
               <span className="inline ml-0.5 text-red-500">*</span>
             </div>
             <input
+              onChange={(e) => setPass(e.target.value)}
               type="password"
               name="password"
               id="password"
@@ -70,11 +117,13 @@ const Register = () => {
             注册并登录
           </button>
 
-          <div className="flex justify-start">
-            <p className="py-0.5 px-3 text-sm rounded bg-red-500 text-white">
-              error message
-            </p>
-          </div>
+          {error && (
+            <div className="flex justify-start">
+              <p className="py-0.5 px-3 text-sm rounded bg-red-500 text-white">
+                {error}
+              </p>
+            </div>
+          )}
 
           <Link
             href="/login"
@@ -84,6 +133,12 @@ const Register = () => {
           </Link>
         </form>
       </div>
+      <button
+        onClick={() => signIn('github')}
+        className="mt-4 bg-zinc-600 hover:bg-white text-white hover:text-black text-sm font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline duration-200"
+      >
+        用 Github 登录
+      </button>
     </section>
   );
 };
