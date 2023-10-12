@@ -5,12 +5,20 @@ import { Dispatch, SetStateAction } from 'react';
 type FormProps = {
   type: string;
   post: Post;
+  userId?: string;
   setPost: Dispatch<SetStateAction<Post>>;
   submitting: boolean;
   handleSubmit: (e: React.FormEvent) => void;
 };
 
-const Form = ({ type, post, setPost, submitting, handleSubmit }: FormProps) => {
+const Form = ({
+  type,
+  post,
+  userId,
+  setPost,
+  submitting,
+  handleSubmit,
+}: FormProps) => {
   return (
     <section className="w-full max-2-full flex-start">
       <div className="container py-10 flex flex-col md:items-center">
@@ -54,7 +62,10 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }: FormProps) => {
           </label>
 
           <div className="flex justify-end mx-3 md-5 gap-4 items-center">
-            <Link href="/" className="text-gray-500 text-sm">
+            <Link
+              href={type === '编辑' ? `/profile/${userId}` : '/'}
+              className="text-gray-500 text-sm"
+            >
               取消
             </Link>
 

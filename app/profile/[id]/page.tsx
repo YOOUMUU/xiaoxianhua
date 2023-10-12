@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -20,15 +20,19 @@ const page = ({ params }: Params) => {
   // const userName = searchParams.get('name');
 
   const [posts, setPosts] = useState([]);
+  const [username, setUsername] = useState('');
 
   const { data: session } = useSession();
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`/api/users/${params?.id}/posts`);
-      const data = await response.json();
+      const postResponse = await fetch(`/api/users/${params?.id}/posts`);
+      const userResponse = await fetch(`/api/users/${params?.id}`);
+      const posts = await postResponse.json();
+      const user = await userResponse.json();
 
-      setPosts(data);
+      setPosts(posts);
+      setUsername(user.username);
     };
 
     if (params?.id) fetchPosts();
@@ -60,8 +64,8 @@ const page = ({ params }: Params) => {
     <>
       <Nav />
       <Profile
-        name="my"
-        desc="欢迎来到你的个人主页"
+        name={username}
+        desc={`${username}, 欢迎来到你的个人主页。你可以在此编辑你的小闲话。`}
         data={posts}
         handleEdit={handleEdit}
         handleDelete={handleDelete}

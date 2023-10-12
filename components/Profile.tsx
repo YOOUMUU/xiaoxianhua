@@ -20,8 +20,10 @@ const Profile = ({
   return (
     <section className="w-full">
       <div className="container py-10">
-        <h1 className="mb-4 text-4xl font-bold text-left">{name}的个人主页</h1>
-        <p className="mb-4 text-lg text-black/50">{desc}</p>
+        <h1 className="ml-2 mb-4 text-4xl font-bold text-left">
+          {name}的个人主页
+        </h1>
+        <p className="ml-2 mb-4 text-lg text-black/50">{desc}</p>
         <ResponsiveMasonry
           columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3, 1200: 4 }}
         >

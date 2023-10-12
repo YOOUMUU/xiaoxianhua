@@ -50,7 +50,7 @@ const Edit = () => {
       });
 
       if (response.ok) {
-        router.push('/');
+        router.push(`/profile/${session?.user?.id}`);
       }
     } catch (error) {
       console.error(error);
@@ -63,6 +63,7 @@ const Edit = () => {
       <Form
         type="编辑"
         post={post}
+        userId={session?.user.id}
         setPost={setPost}
         submitting={submitting}
         handleSubmit={updatePost}
