@@ -9,8 +9,6 @@ const Feed = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const router = useRouter();
-
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
