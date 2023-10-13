@@ -1,8 +1,9 @@
 'use client';
 
+export const revalidate = 60;
+
 import { useEffect, useState } from 'react';
 import FeedCardList from './FeedCardList';
-import { useRouter } from 'next/navigation';
 
 const Feed = () => {
   const [searchText, setSearchText] = useState('');
