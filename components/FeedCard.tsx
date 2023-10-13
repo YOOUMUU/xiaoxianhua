@@ -36,7 +36,7 @@ const FeedCard = ({
         <div className="flex justify-between items-center gap-2 mb-2">
           <span className="font-bold text-lg">{post?.creator?.username}</span>
           <div
-            className="p-1 mb-[-10px] rounded bg-gray-50 cursor-pointer"
+            className="p-1 rounded bg-gray-50 cursor-pointer"
             onClick={handleCopy}
           >
             <Image
@@ -55,7 +55,7 @@ const FeedCard = ({
           <p className="text-lg mb-4">{post.content}</p>
           <p
             onClick={() => handleTagClick && handleTagClick(post.tag)}
-            className="text-sm py-0.5 px-1 mb-2 bg-gray-100 rounded font-medium text-gray-500"
+            className="cursor-pointer text-sm py-0.5 px-1 mb-2 bg-gray-100 rounded font-medium text-gray-500"
           >
             #{post.tag}
           </p>

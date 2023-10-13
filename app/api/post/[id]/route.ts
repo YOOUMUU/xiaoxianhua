@@ -11,7 +11,9 @@ type Params = {
 export const GET = async (req: Request, { params }: Params) => {
   try {
     await connectToDatabase();
-    const post = await Post.findById(params.id).populate('creator');
+    const post = await Post.findById(params.id)
+      .populate('creator')
+      .sort({ createdAt: -1 });
 
     if (!post) {
       return new Response('小闲话获取失败', { status: 404 });

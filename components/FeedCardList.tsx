@@ -17,8 +17,6 @@ const FeedCardList = ({ data, handleTagClick }: FeedCardListProps) => {
             key={post._id}
             post={post}
             handleTagClick={handleTagClick}
-            handleEdit={() => {}}
-            handleDelete={() => {}}
           />
         ))}
       </Masonry>

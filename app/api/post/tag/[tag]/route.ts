@@ -3,14 +3,14 @@ import { connectToDatabase } from '@utils/database';
 
 type Params = {
   params: {
-    id: string;
+    tag: string;
   };
 };
 
 export const GET = async (req: Request, { params }: Params) => {
   try {
     await connectToDatabase();
-    const posts = await Post.find({ creator: params.id })
+    const posts = await Post.find({ tag: params.tag })
       .populate('creator')
       .sort({ createdAt: -1 });
 
