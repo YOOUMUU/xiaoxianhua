@@ -15,29 +15,11 @@ const Feed = () => {
     e.preventDefault();
 
     if (!searchText) {
-      const fetchPosts = async () => {
-        const response = await fetch('/api/post');
-        const data = await response.json();
-
-        setPosts(data);
-      };
-
       fetchPosts();
     }
 
     if (searchText) {
-      const fetchPosts = async () => {
-        try {
-          const response = await fetch(`/api/post/search/${searchText}`);
-          const data = await response.json();
-
-          setPosts(data);
-        } catch (error) {
-          setPosts([]);
-        }
-      };
-
-      fetchPosts();
+      searchPosts();
     }
   };
 
